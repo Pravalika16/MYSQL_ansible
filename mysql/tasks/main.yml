@@ -1,0 +1,31 @@
+---
+- name: Install MySQL on CentOS
+  yum:
+    name: "{{ os_support.centos.package_name }}-{{ mysql_version }}"
+    state: present
+  when: ansible_facts['os_family'] == "RedHat" and (os_choice == "centos" or os_choice == "both")
+
+- name: Install MySQL on Ubuntu
+  apt:
+    name: "{{ os_support.ubuntu.package_name }}-{{ mysql_version }}"
+    state: present
+  when: ansible_facts['os_family'] == "Debian" and (os_choice == "ubuntu" or os_choice == "both")
+
+- name: Create MySQL configuration file
+  template:
+    src: ../templates/my.cnf.j2
+    dest: /etc/mysql/my.cnf
+  notify: restart mysql
+
+- name: Set MySQL root password
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    host: "{{ item }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    login_host: 127.0.0.1
+  with_items:
+    - localhost
+    - 127.0.0.1

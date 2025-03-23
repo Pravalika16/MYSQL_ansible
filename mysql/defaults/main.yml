@@ -1,0 +1,12 @@
+---
+# defaults file for mysql
+# defaults/main.yml
+os_support:
+  centos:
+    package_name: "mysql-server"
+    install_command: "sudo yum install -y"
+    service_name: "mysqld"
+  ubuntu:
+    package_name: "mysql-server"
+    install_command: "sudo apt-get install -y"
+    service_name: "mysql"

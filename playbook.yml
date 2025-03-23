@@ -1,0 +1,6 @@
+# playbook.yml
+- name: Install and configure MySQL
+  hosts: localhost  # You can specify specific groups or hosts here (e.g., 'web_servers', 'db_servers')
+  become: yes  # Elevate privileges (if required)
+  roles:
+    - mysql  # This is where we reference the role you created

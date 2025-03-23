@@ -1,0 +1,16 @@
+---
+- name: Test MySQL Playbook
+  hosts: localhost
+  become: yes
+  vars:
+    mysql_root_password: "kanika"  # Define the root password here
+    os_choice: ubuntu  # Make sure os_choice is defined here
+    mysql_version: "8.0"  # MySQL version
+    os_support:
+      centos:
+        package_name: mysql-server
+      ubuntu:
+        package_name: mysql-server
+
+  tasks:
+    - include_tasks: /home/ubuntu/mysql/tasks/main.yml

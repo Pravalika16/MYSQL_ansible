@@ -1,0 +1,6 @@
+# handlers/main.yml
+
+- name: restart mysql
+  service:
+    name: "{{ os_support[ansible_facts['os_family']].service_name }}"
+    state: restarted

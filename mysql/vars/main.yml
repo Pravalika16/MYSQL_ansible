@@ -1,0 +1,10 @@
+---
+# vars file for mysql
+# vars/main.yml
+mysql_version: "8.0"  # Version of MySQL to install
+os_choice: "both"  # Options: "centos", "ubuntu", "both"
+mysql_root_password: "kanika"
+mysql_config:
+  bind_address: "0.0.0.0"
+  port: 3306
+  max_connections: 100
